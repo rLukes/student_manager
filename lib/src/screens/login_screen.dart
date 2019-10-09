@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 15),
         ),
-        submitButton(),
+        submitButton(appBloc),
       ],
     );
   }
@@ -36,25 +36,27 @@ class LoginScreen extends StatelessWidget {
 
   Widget passwordField(AppBloc appBloc) {
     return StreamBuilder<Object>(
-      stream: appBloc.password,
-      builder: (context, snapshot) {
-        return TextField(
-          onChanged: appBloc.changePassword,
-          decoration: InputDecoration(
-            labelText: "Password",
-            labelStyle: TextStyle(color: Colors.grey),
-            errorText: snapshot.error
-          ),
-        );
-      }
-    );
+        stream: appBloc.password,
+        builder: (context, snapshot) {
+          return TextField(
+            onChanged: appBloc.changePassword,
+            decoration: InputDecoration(
+                labelText: "Password",
+                labelStyle: TextStyle(color: Colors.grey),
+                errorText: snapshot.error),
+          );
+        });
   }
 
-  Widget submitButton() {
-    return RaisedButton(
-      child: Text("Sign in"),
-      color: Colors.blueGrey,
-      onPressed: () {},
-    );
+  Widget submitButton(AppBloc appBloc) {
+    return StreamBuilder<Object>(
+        stream: appBloc.submitValid,
+        builder: (context, snapshot) {
+          return RaisedButton(
+            child: Text("Login"),
+            color: Colors.blueGrey,
+            onPressed: snapshot.hasData ? () {} : null,
+          );
+        });
   }
 }

@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:student_manager/src/blocs/validators.dart';
 
 class AppBloc with Validators {
-  final _username = StreamController<String>();
-  final _password = StreamController<String>();
+  final _username = BehaviorSubject<String>();
+  final _password = BehaviorSubject<String>();
 
   Stream<String> get username => _username.stream.transform(validateUsername);
 
@@ -13,6 +14,10 @@ class AppBloc with Validators {
   Function(String) get changeUsername => _username.sink.add;
 
   Function(String) get changePassword => _password.sink.add;
+
+  Stream<bool> get submitValid =>
+      Observable.combineLatest2(username, password, (e, p) => true);
+
 
 
   dispose(){
