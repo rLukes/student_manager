@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_manager/src/student_manager_app.dart';
 
 void main(){
-  runApp(StudentManager());
-}
-
-class StudentManager extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("hello student..."),
-      ),
-    );
-  }
+  runApp(StudentManagerApp());
 }
