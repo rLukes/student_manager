@@ -12,7 +12,9 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Student Mananger",
-      home: LoginScreen(),
+      home: Scaffold(
+        body: LoginScreen(),
+      ),
     );
   }
 }
