@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_manager/src/blocs/provider.dart';
 import 'package:student_manager/src/screens/login_screen.dart';
-
 
 class StudentManagerApp extends StatefulWidget {
   @override
@@ -10,10 +10,12 @@ class StudentManagerApp extends StatefulWidget {
 class _StudentManagerAppState extends State<StudentManagerApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Student Mananger",
-      home: Scaffold(
-        body: LoginScreen(),
+    return Provider(
+      child: MaterialApp(
+        title: "Student Mananger",
+        home: Scaffold(
+          body: LoginScreen(),
+        ),
       ),
     );
   }

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:student_manager/src/blocs/app_bloc.dart';
+import 'package:student_manager/src/blocs/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appBloc = Provider.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        usernameField(),
-        passwordField(),
+        usernameField(appBloc),
+        passwordField(appBloc),
         Container(
           margin: EdgeInsets.only(top: 15),
         ),
@@ -18,7 +20,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget usernameField() {
+  Widget usernameField(AppBloc appBloc) {
     return StreamBuilder<Object>(
         stream: appBloc.username,
         builder: (context, snapshot) {
@@ -32,7 +34,7 @@ class LoginScreen extends StatelessWidget {
         });
   }
 
-  Widget passwordField() {
+  Widget passwordField(AppBloc appBloc) {
     return StreamBuilder<Object>(
       stream: appBloc.password,
       builder: (context, snapshot) {

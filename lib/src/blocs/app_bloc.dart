@@ -20,5 +20,3 @@ class AppBloc with Validators {
     _password.close();
   }
 }
-
-final appBloc = AppBloc();
