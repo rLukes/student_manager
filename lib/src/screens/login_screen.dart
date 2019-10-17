@@ -55,7 +55,20 @@ class LoginScreen extends StatelessWidget {
           return RaisedButton(
             child: Text("Login"),
             color: Colors.blueGrey,
-            onPressed: snapshot.hasData ? () {} : null,
+            onPressed: snapshot.hasData ? () {
+              Future<Map<String, dynamic>> authInformation = appBloc.authenticate();
+              authInformation.then((onValue) {
+                if (onValue['success']) {
+                  //Navigator.pushNamed(context, "/home");
+                  print("ok.");
+                } else {
+                 /* setState(() {
+                    statusClick = 0;
+                  });
+                  _dialogs.error(context, onValue['title'], onValue['message']);*/
+                }
+              });
+            } : null,
           );
         });
   }

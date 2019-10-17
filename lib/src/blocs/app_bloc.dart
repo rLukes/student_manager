@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:student_manager/src/blocs/validators.dart';
+import 'package:student_manager/src/resources/repository.dart';
 
 class AppBloc with Validators {
+  final repository = new Repository();
   final _username = BehaviorSubject<String>();
   final _password = BehaviorSubject<String>();
 
@@ -20,8 +22,14 @@ class AppBloc with Validators {
 
 
 
+  Future<Map<String, dynamic>> authenticate() async {
+    print(_username.value +" : "+_password.value);
+    return repository.authenticate(_username.value, _password.value);
+  }
+
   dispose(){
     _username.close();
     _password.close();
   }
 }
+
